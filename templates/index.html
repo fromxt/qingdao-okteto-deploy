@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>青岛流量</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        p {
+            margin: 30px auto;
+            width: 500px;
+        }
+        span {
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+        手机号:<input type="text" id="phone" name="phone"/>
+        <button onclick="addPhone()">添加</button>
+
+    <p id="msg"></p>
+    <p>
+        注：青岛啤酒(趣味天天摇)抽奖，<span>仅限联通号码使用，</span>一天抽奖3次，可能抽中50MB流量、100MB流量、200MB流量(200MB流量已经取消，现在以变成 幸运奖(就是跳转一商品界面))、1000MB流量、20钻石，只要添加手机号码挂机，本系统将自动为你抽奖。系统会保存你的手机号码，介意请勿使用！已添加的可自行查询删掉。(经验：一个手机号码貌似一个月累计最多能抽中1000M，中不中流量看运气)，每天晚上12:05自动抽奖
+    </p>
+    <p>
+        <a href="https://m.client.10010.com/sma-lottery/qpactivity/qingpiindex">进入官网抽奖</a>
+    </p>
+    
+    <script>
+
+        removePhone = () => {
+            let phone = document.getElementById('phone').value;
+            let formData = new FormData()
+            formData.append('phone', phone)
+            console.log(phone)
+            xmlHttp.open('POST', '/removephone')
+            xmlHttp.send(formData)
+            xmlHttp.onreadystatechange = function(){
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    console.log(xmlHttp.responseText);
+                    document.getElementById('msg').innerHTML = xmlHttp.responseText
+                }
+                else {
+                    // console.log(xmlHttp.statusText);
+                }
+            }
+        }
+
+        addPhone = () => {
+            let phone = document.getElementById('phone').value;
+            phoneReg = /^1[3456789]\d{9}$$/
+            if(!(phoneReg.test(phone))){ 
+                alert("手机号码有误，请重填");  
+                return; 
+            }
+
+            xmlHttp = new XMLHttpRequest()
+            if(xmlHttp != null){
+                let formData = new FormData()
+                formData.append('phone', phone)
+
+                xmlHttp.open('POST', '/addphone')
+                xmlHttp.send(formData)
+                xmlHttp.onreadystatechange = function(){
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        console.log(xmlHttp.responseText);
+                        text = xmlHttp.responseText + '<button onclick="removePhone()">移除</button>'
+                        document.getElementById('msg').innerHTML = text
+                    }
+                    else {
+                        // console.log(xmlHttp.statusText);
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

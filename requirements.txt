@@ -1,0 +1,4 @@
+requests
+schedule
+web.py==0.40
+pytesseract
