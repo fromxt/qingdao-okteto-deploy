@@ -27,7 +27,7 @@ The `k8s.yml` file contains the Kubernetes manifests of the App. Deploy a dev ve
  kubectl apply -f k8s.yml
 ```
 ## Step 3: Login 
-You can access the App https://qingdao-<github id>.cloud.okteto.net/qingdao
+You can access the App https://qingdao-<github_id> .cloud.okteto.net/qingdao
 
 # Reference
 - https://github.com/teenyda/qingdao
