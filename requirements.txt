@@ -1,4 +1,5 @@
 requests
-schedule
-web.py==0.40
 pytesseract
+Pillow
+web.py==0.40
+schedule

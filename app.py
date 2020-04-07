@@ -41,8 +41,8 @@ ALLOWED_AST_NODES.append('Constant')
 fileName = 'phone.txt'
 # 备份文件（没有则自动创建）
 backFileName = 'phone.back'
-# 抽奖任务执行时间
-taskTime = '00:05'
+# 抽奖任务执行时间，跟你服务器所在时区有关。例如默认的16：05UTC就是北京时间24：05UTC+8
+taskTime = '16:05'
 # 抽奖时间间隔
 intervalTime = 0
 # 连续多少次不中奖停止抽奖（针对流量被抽完停止抽奖）

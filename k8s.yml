@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qdbeer
+  name: qingdao
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: qdbeer
+      app: qingdao
   template:
     metadata:
       labels:
-        app: qdbeer
+        app: qingdao
     spec:
       containers:
-      - image: registry.cloud.okteto.net/fromxt/qdbeer:python
-        name: qdbeer
+      - image: registry.cloud.okteto.net/fromxt/qingdao:python
+        name: qingdao
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: qdbeer
+  name: qingdao
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "qdbeer"
+  - name: "qingdao"
     port: 8080
   selector:
-    app: qdbeer
+    app: qingdao

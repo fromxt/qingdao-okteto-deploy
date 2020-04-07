@@ -1,23 +1,14 @@
-FROM python:3-slim as builder
+FROM python:3.6-slim
 
 WORKDIR /usr/src/app
+RUN apt update 
+RUN apt install -y tesseract-ocr
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 COPY templates ./templates
 COPY app.py app.py
-CMD ["python", "app.py" ]
-
-#######################################
-
-FROM builder AS dev
-
-COPY requirements-dev.txt requirements-dev.txt
-RUN pip install -r requirements-dev.txt
-
-#######################################
-
-FROM builder AS production
 
 EXPOSE 8080
 
-CMD ["python", "app.py" ]
+CMD ["python3", "app.py" ]
+

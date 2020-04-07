@@ -1,5 +1,5 @@
-name: unicom
-image: registry.cloud.okteto.net/fromxt/qdbeer:python
+name: qingdao
+image: registry.cloud.okteto.net/fromxt/qingdao:python
 command: [ "python", "app.py"]
 forward:
   - 8080:8080
